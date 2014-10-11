@@ -1,0 +1,10 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- size of label relative to the font size of EditText -->
+    <item name="label_scale" type="dimen" format="float">0.75</item>
+
+    <!-- number of animation frame -->
+    <integer name="label_animation_step">9</integer>
+</resources>

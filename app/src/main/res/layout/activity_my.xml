@@ -1,0 +1,35 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/back_default"
+    tools:context=".MyActivity">
+
+
+    <com.collosteam.materialedittextlib.MaterialEditTextWithError
+        android:id="@+id/etLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <com.collosteam.materialedittextlib.MaterialEditTextWithError
+        android:id="@+id/etSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LOGIN"
+        android:id="@+id/button"
+        android:textColor="@android:color/white"
+        android:layout_gravity="center_horizontal"
+        android:background="@android:color/transparent" />
+
+
+</LinearLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- label color -->
+    <color name="label_color">#ffffff</color>
+
+    <color name="label_color_notfocus">#80ffffff</color>
+
+    <!-- EditText text field line color -->
+    <color name="edittext_line">#80ffffff</color>
+
+    <!-- EditText focused text field line color -->
+    <color name="edittext_line_focused">#ffffff</color>
+
+    <color name="back_default">#2095f2</color>
+</resources>

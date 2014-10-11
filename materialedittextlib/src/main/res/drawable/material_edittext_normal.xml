@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@color/edittext_line" />
+        </shape>
+    </item>
+
+    <item android:bottom="3.5dp">
+        <shape>
+            <solid android:color="@color/back_default" />
+        </shape>
+    </item>
+
+    <item android:top="64dp">
+        <shape>
+            <solid android:color="@color/back_default" />
+        </shape>
+    </item>
+</layer-list>
