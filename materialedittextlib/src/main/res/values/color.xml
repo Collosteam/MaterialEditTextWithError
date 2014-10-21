@@ -12,4 +12,9 @@
     <color name="edittext_line_focused">#ffffff</color>
 
     <color name="back_default">#2095f2</color>
+
+    <!--Black-->
+    <color name="app_grey">#ff2f2b30</color>
+    <color name="app_focused_label">#ff2f2b30</color>
+    <color name="app_unfocused_label">#ff79787b</color>
 </resources>
