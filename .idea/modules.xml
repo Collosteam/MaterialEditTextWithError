@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Material EditText wit Error.iml" filepath="$PROJECT_DIR$/Material EditText wit Error.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MaterialEditText2.iml" filepath="$PROJECT_DIR$/MaterialEditText2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/materialedittextlib/materialedittextlib.iml" filepath="$PROJECT_DIR$/materialedittextlib/materialedittextlib.iml" />
     </modules>

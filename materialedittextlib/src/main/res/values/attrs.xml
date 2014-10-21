@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="typeface" format="enum">
-        <enum name="roboto" value="0"/>
-        <enum name="robotoThin" value="1"/>
-        <enum name="robotoLight" value="2"/>
-        <enum name="robotoMedium" value="3"/>
-        <enum name="robotoBold" value="4"/>
-        <enum name="robotoBlack" value="5"/>
+        <enum name="roboto" value="0" />
+        <enum name="robotoThin" value="1" />
+        <enum name="robotoLight" value="2" />
+        <enum name="robotoMedium" value="3" />
+        <enum name="robotoBold" value="4" />
+        <enum name="robotoBlack" value="5" />
     </attr>
 
     <declare-styleable name="MaterialEditText">
         <attr name="typeface" />
+
     </declare-styleable>
 </resources>

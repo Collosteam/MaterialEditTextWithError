@@ -1,6 +1,7 @@
 package com.collosteam.materialedittextlib;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.text.Editable;
@@ -20,7 +21,7 @@ public class MaterialEditTextWithError extends LinearLayout implements TextWatch
     TextView errorText;
     ImageView errorImage;
     View errorView;
-
+    private CharSequence error;
 
     public MaterialEditTextWithError(Context context) {
         super(context);
@@ -37,17 +38,39 @@ public class MaterialEditTextWithError extends LinearLayout implements TextWatch
         init(context, attrs);
     }
 
+    public void setTextColor(int color) {
+        materialEditText.setTextColor(color);
+    }
+
+    public void setTextColor(ColorStateList colors) {
+        materialEditText.setTextColor(colors);
+    }
+
+    public void setTextSize(float size) {
+        materialEditText.setTextSize(size);
+    }
+
+    public void setTextSize(int unit, float size) {
+        materialEditText.setTextSize(unit, size);
+    }
+
+    public void setHintColorIds(int focusedColorID, int unFocusedColorId) {
+
+        materialEditText.setFocusedHintColorId(focusedColorID);
+        materialEditText.setUnfocusedHintColorId(unFocusedColorId);
+    }
+
     private void init(Context context, AttributeSet attrs) {
         inflate(context, R.layout.edit_text_item, this);
-
 
         errorView = findViewById(R.id.errorView);
 
         materialEditText = (MaterialEditText) findViewById(R.id.etext);
+
         materialEditText.addTextChangedListener(this);
 
         errorText = (TextView) findViewById(R.id.tvError);
-        errorText.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"Roboto-Medium.ttf"));
+        errorText.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "Roboto-Medium.ttf"));
 
         TypedArray values = context.obtainStyledAttributes(attrs, R.styleable.MaterialEditText);
         int typeface = values.getInt(R.styleable.MaterialEditText_typeface, 0);
@@ -59,27 +82,35 @@ public class MaterialEditTextWithError extends LinearLayout implements TextWatch
         materialEditText.setText(stringID);
     }
 
-    public void setText(CharSequence text) {
-        materialEditText.setText(text);
-    }
-
     public Editable getText() {
         return materialEditText.getText();
     }
 
-    public void setHint(int string_id){
-        materialEditText.setHint(string_id);
+    public void setText(CharSequence text) {
+        materialEditText.setText(text);
     }
-    public void setHint(CharSequence text) {
-        materialEditText.setHint(text);
+
+    public void setHint(int string_id) {
+        materialEditText.setHint(string_id);
     }
 
     public CharSequence getHint() {
         return materialEditText.getHint();
     }
 
+    public void setHint(CharSequence text) {
+        materialEditText.setHint(text);
+    }
 
-    private CharSequence error;
+    @Override
+    public void setBackgroundResource(int resid) {
+        materialEditText.setBackgroundResource(resid);
+        materialEditText.invalidate();
+    }
+
+    public CharSequence getError() {
+        return error;
+    }
 
     public void setError(CharSequence charSequence) {
         if (charSequence != null) {
@@ -88,10 +119,6 @@ public class MaterialEditTextWithError extends LinearLayout implements TextWatch
             errorView.setVisibility(VISIBLE);
             materialEditText.setBackgroundResource(R.drawable.error_line);
         }
-    }
-
-    public CharSequence getError() {
-        return error;
     }
 
     @Override

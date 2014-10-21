@@ -22,9 +22,11 @@ public class MyActivity extends Activity {
         final MaterialEditTextWithError etLogin = (MaterialEditTextWithError) findViewById(R.id.etLogin);
         etLogin.setHint("Log In");
 
-
         MaterialEditTextWithError etSignUp = (MaterialEditTextWithError) findViewById(R.id.etSignUp);
+        etSignUp.setBackgroundResource(R.drawable.material_edittext_bg_black);
         etSignUp.setHint("Sign Up");
+        etSignUp.setTextColor(getResources().getColor(R.color.app_grey));
+        etSignUp.setHintColorIds(R.color.app_focused_label, R.color.app_unfocused_label);
 
         Button button = (Button) findViewById(R.id.button);
 

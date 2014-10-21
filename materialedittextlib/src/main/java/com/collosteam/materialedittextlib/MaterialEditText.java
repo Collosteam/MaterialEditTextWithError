@@ -1,7 +1,6 @@
 package com.collosteam.materialedittextlib;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -23,19 +22,21 @@ public class MaterialEditText extends EditText {
     private static final int ROBOTO_BLACK = 5;
 
     private static final int ANIMATION_NONE = 0;
+    private int animationType = ANIMATION_NONE;
     private static final int ANIMATION_SHOW = 1;
     private static final int ANIMATION_HIDE = 2;
-
     private final Paint labelPaint = new Paint();
-    private ColorStateList labelColor;
     private float labelScale;
-
     private int animationSteps;
-    private int animationType = ANIMATION_NONE;
     private int animationFrame;
 
     private boolean isEmpty;
     private boolean isFocused;
+
+    private int focusedHintColorId = R.color.label_color;
+
+    private int unFocusedColorId = R.color.label_color_notfocus;
+    private CharSequence error;
 
     public MaterialEditText(Context context) {
         super(context);
@@ -49,7 +50,7 @@ public class MaterialEditText extends EditText {
         getResources().getValue(R.dimen.label_scale, typedValue, true);
         labelScale = typedValue.getFloat();
         animationSteps = getResources().getInteger(R.integer.label_animation_step);
-        labelColor = getHintTextColors();
+
         isEmpty = TextUtils.isEmpty(getText());
     }
 
@@ -61,7 +62,7 @@ public class MaterialEditText extends EditText {
         getResources().getValue(R.dimen.label_scale, typedValue, true);
         labelScale = typedValue.getFloat();
         animationSteps = getResources().getInteger(R.integer.label_animation_step);
-        labelColor = getHintTextColors();
+
         isEmpty = TextUtils.isEmpty(getText());
     }
 
@@ -76,7 +77,8 @@ public class MaterialEditText extends EditText {
 
     protected void setCustomTypeFace(Context context, int typeface) {
         switch (typeface) {
-            case ROBOTO: default:
+            case ROBOTO:
+            default:
                 setTypeface(Typeface.createFromAsset(context.getAssets(), "Roboto-Regular.ttf"));
                 break;
 
@@ -115,17 +117,17 @@ public class MaterialEditText extends EditText {
 
         final boolean isEmptyNow = TextUtils.isEmpty(getText());
 
-        if(isEmpty == isEmptyNow) {
+        if (isEmpty == isEmptyNow) {
             return;
         }
 
         isEmpty = isEmptyNow;
 
-        if(!isShown()) {
+        if (!isShown()) {
             return;
         }
 
-        if(isEmpty) {
+        if (isEmpty) {
             animationType = ANIMATION_HIDE;
             setHintTextColor(Color.TRANSPARENT);
         } else {
@@ -141,45 +143,39 @@ public class MaterialEditText extends EditText {
         invalidate();
     }
 
-
-
-    private CharSequence error;
-
-    @Override
-    public void setError(CharSequence error) {
-       //super.setError(error);
-    }
-
     @Override
     public CharSequence getError() {
         return error;
     }
 
     @Override
+    public void setError(CharSequence error) {
+        //super.setError(error);
+    }
+
+
+  /*  R.color.label_color
+    R.color.label_color_notfocus*/
+
+    @Override
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         // if the EditText do not have hint, do nothing
         if(TextUtils.isEmpty(getHint())) {
             return;
         }
-
-        final boolean isAnimating = animationType != ANIMATION_NONE;
-
+        boolean isAnimating = animationType != ANIMATION_NONE;
         // if EditText is empty, do nothing as hint will be drawn by Android
         if(!isAnimating && TextUtils.isEmpty(getText())) {
             return;
         }
-
         labelPaint.set(getPaint());
-        labelPaint.setColor(isFocused ? getResources().getColor(R.color.label_color) : getResources().getColor(R.color.label_color_notfocus));
-
+        labelPaint.setColor(isFocused ? getResources().getColor(getFocusedHintColorId()) : getResources().getColor(getUnFocusedColorId()));
         final float hintPosX = getCompoundPaddingLeft() + getScrollX();
         final float hintPosY = getBaseline();
         final float floatLabelPosY = hintPosY + getPaint().getFontMetricsInt().top - 8;
         final float hintSize = getTextSize();
         final float floatLabelSize = hintSize * labelScale;
-
         if(!isAnimating) {
             labelPaint.setTextSize(floatLabelSize);
             canvas.drawText(getHint().toString(), hintPosX, floatLabelPosY, labelPaint);
@@ -196,7 +192,7 @@ public class MaterialEditText extends EditText {
 
         if(animationFrame == animationSteps) {
             if(animationType == ANIMATION_HIDE) {
-                setHintTextColor(labelColor);
+                setHintTextColor(getResources().getColor(getUnFocusedColorId()));
             }
             animationType = ANIMATION_NONE;
             animationFrame = 0;
@@ -216,5 +212,24 @@ public class MaterialEditText extends EditText {
     private float calculate(float from, float to) {
         final float alpha = (float) animationFrame / (animationSteps - 1);
         return (from * (1 - alpha)) + (to * alpha);
+    }
+
+    public int getFocusedHintColorId() {
+        return focusedHintColorId;
+    }
+
+    public void setFocusedHintColorId(int focusedHintColorId) {
+        this.focusedHintColorId = focusedHintColorId;
+        invalidate();
+    }
+
+    public int getUnFocusedColorId() {
+        return unFocusedColorId;
+    }
+
+    public void setUnfocusedHintColorId(int unFocusedColorId) {
+        this.unFocusedColorId = unFocusedColorId;
+        setHintTextColor(unFocusedColorId);
+        invalidate();
     }
 }
