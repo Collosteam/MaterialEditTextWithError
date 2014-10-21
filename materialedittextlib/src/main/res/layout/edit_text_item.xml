@@ -9,7 +9,6 @@
         android:id="@+id/etext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:textColor="@android:color/white"
         android:textColorHint="@color/edittext_line"
         app:typeface="robotoMedium" />

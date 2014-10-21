@@ -22,6 +22,7 @@ public class MaterialEditTextWithError extends LinearLayout implements TextWatch
     ImageView errorImage;
     View errorView;
     private CharSequence error;
+    private int backGroundResourceID = R.drawable.material_edittext_bg;
 
     public MaterialEditTextWithError(Context context) {
         super(context);
@@ -102,8 +103,13 @@ public class MaterialEditTextWithError extends LinearLayout implements TextWatch
         materialEditText.setHint(text);
     }
 
+    private int getBackGroundResourceID() {
+        return backGroundResourceID;
+    }
+
     @Override
     public void setBackgroundResource(int resid) {
+        this.backGroundResourceID = resid;
         materialEditText.setBackgroundResource(resid);
         materialEditText.invalidate();
     }
@@ -137,6 +143,6 @@ public class MaterialEditTextWithError extends LinearLayout implements TextWatch
         error = null;
         errorText.setError(null);
         errorView.setVisibility(INVISIBLE);
-        materialEditText.setBackgroundResource(R.drawable.material_edittext_bg);
+        materialEditText.setBackgroundResource(getBackGroundResourceID());
     }
 }
